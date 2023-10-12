@@ -1,0 +1,106 @@
+
+.card{
+    position: relative;
+
+    // .logoCoeur{
+    //     position: absolute;
+    //     height: 30px;
+    //     width:auto;
+    //     right: 5px;
+    //     top: 5px;
+    //     z-index: 1;
+    //     opacity: 1;
+    //     border: 10px solid white; /* Définissez l'épaisseur de la bordure et la couleur (blanc dans cet exemple) */
+    //     padding: 20px;
+    // }
+
+    .logoCoeurVide{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        z-index: 1;
+
+        display: block; 
+        fill: rgba(0, 0, 0, 0.5); 
+        height: 24px; 
+        width: 24px; 
+        stroke: #fff; 
+        stroke-width: 2; 
+        overflow: visible;
+    }
+
+    .logoCoeurPlein{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        z-index: 1;
+
+        display: block; 
+        fill: rgba(255, 0, 0, 1); 
+        height: 24px; 
+        width: 24px; 
+        stroke: #fff; 
+        stroke-width: 2; 
+        overflow: visible;
+    }
+
+    .imageContainer{
+        position: relative;
+
+        height: 240px; /* Hauteur du carré en pixels */ 
+        width: 240px; /* Largeur du carré en pixels */
+        overflow: hidden; /* Hide the overflowing content */
+        border-radius: 15px;
+
+        .image{
+            height: 100%;
+            width: 100%; /* Make the image take 100% of the container's width */
+            object-fit: cover;
+        }
+
+        
+    }
+
+    .textContent{
+        
+        position: relative;
+        .rating{
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            
+            .logo{
+                height: 10px;
+                width:auto;
+            }
+        }
+
+        .titre-logement{
+            text-align: left;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .prix{
+            text-align: left;
+            white-space: nowrap;
+            margin: 5px;
+        }
+    }
+    
+    background-color: white;
+    border-radius: 15px;
+    // padding: 5%;
+    text-align: center;
+    max-width: 20rem;
+    margin: 5px;
+}
+
+.card:hover{
+    background-color: whitesmoke;
+}
+
+
+
+
+

@@ -1,0 +1,98 @@
+.center-presentation{
+    display: flex;
+    justify-content: center;
+
+    .card{
+        // display: flex;
+        // justify-content: center;
+        position: relative;
+    
+        .logoCoeurVide{
+            position: absolute;
+            right: 5px;
+            top: 25px;
+            z-index: 1;
+    
+            display: block; 
+            fill: rgba(0, 0, 0, 0.5); 
+            height: 50px; 
+            width: 50px; 
+            stroke: #fff; 
+            stroke-width: 2; 
+            overflow: visible;
+        }
+    
+        .logoCoeurPlein{
+            position: absolute;
+            right: 5px;
+            top: 25px;
+            z-index: 1;
+            height: 50px; 
+            width: 50px; 
+            display: block; 
+            fill: rgba(255, 0, 0, 1); 
+            stroke: #fff; 
+            stroke-width: 2; 
+            overflow: visible;
+        }
+    
+        .imageContainer{
+            position: relative;
+    
+            height: 550px; /* Hauteur du carré en pixels */ 
+            width: 550px; /* Largeur du carré en pixels */
+            overflow: hidden; /* Hide the overflowing content */
+            border-radius: 15px;
+    
+            .image{
+                height: 100%;
+                width: 100%; /* Make the image take 100% of the container's width */
+                object-fit: cover;
+            }
+    
+            
+        }
+    
+        .textContent{
+            
+            position: relative;
+            .rating{
+                position: absolute;
+                top: 0%;
+                right: 0%;
+                
+                
+            }
+    
+            .titre-logement{
+                text-align: left;
+                font-weight: bold;
+                margin: 5px;
+            }
+    
+            .prix{
+                text-align: left;
+                white-space: nowrap;
+                margin: 5px;
+            }
+        }
+        
+        // background-color: white;
+        // border-radius: 15px;
+        // padding: 5%;
+        // text-align: center;
+        margin: 5px;
+    }
+    
+}
+
+.logo{
+    height: 10px;
+    width:auto;
+}
+
+
+
+
+
+

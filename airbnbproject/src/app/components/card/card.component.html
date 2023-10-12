@@ -1,0 +1,45 @@
+<div class="card">
+    <!-- <img class="logoCoeur" src="../../../assets/imgAirbnb/coeurVide.svg" alt="Image" > -->
+
+    <div (click)="saveLiked()" class="logoCoeur">
+
+        <ng-container *ngIf="cardData.favourite; else elseBlock">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" class="logoCoeurVide">
+                <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"></path>
+            </svg>
+        </ng-container>
+
+        <ng-template #elseBlock>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" class="logoCoeurPlein">
+                <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"></path>
+            </svg>
+        </ng-template>
+        
+    </div>    
+
+    <div (click)="goToPage(cardData)" >
+        <div class="imageContainer">
+            <img [src]="imageWithPrefix" alt="Image" class="image">
+        </div>
+    
+        <div class="textContent">
+            <div class="titre-logement">{{cardData.city_name}}, {{cardData.city_zipCode}}</div>
+    
+            <div class="rating">
+                <img src="../../../assets/imgAirbnb/etoile.svg" alt="Image" class="logo">
+                {{cardData.rating}}
+            </div>
+            
+            <p class="prix"><strong>{{cardData.price}}€</strong> par nuit</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- <h1>{{cardData.image}}</h1> -->
+<!-- <img [src]="data:image/jpeg;base64,${{cardData.image}}" alt="Image"> -->
+
+<!-- <h1>{{cardData.id}}</h1> -->

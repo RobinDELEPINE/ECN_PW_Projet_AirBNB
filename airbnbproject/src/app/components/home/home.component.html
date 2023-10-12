@@ -1,0 +1,9 @@
+<div class="grille">
+    <ng-container *ngIf="mesLogementsFiltered$ | async as mesLogementsFiltered">
+        
+            <div *ngFor="let item of mesLogementsFiltered" class="mesLogements">
+                <app-card [cardData]="item"></app-card>
+            </div>
+    
+    </ng-container>
+</div>

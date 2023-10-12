@@ -1,0 +1,12 @@
+
+.grille{
+    display: flex;
+    flex-wrap: wrap; /* Passez à la ligne suivante lorsque la ligne est pleine */
+    // flex-direction: row; /* Alignez d'abord les éléments sur une ligne */
+    max-width: 100%; /* Largeur maximale de la ligne (ajustez selon vos besoins) */
+    gap: 1%;
+    padding: 2%;
+    justify-content: center;
+}
+
+

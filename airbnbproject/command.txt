@@ -1,0 +1,9 @@
+lancer le serveur :
+ng serve
+node server.js
+
+créer un nouveau composant :
+ng generate component components/home
+
+ng generate service services/getAccommodations
+
