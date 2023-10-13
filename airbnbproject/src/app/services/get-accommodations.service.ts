@@ -20,11 +20,12 @@ export class GetAccommodationsService {
     return this.http.get<Array<Logement>>(`http://localhost:3000/get/accommodations`);
   }
 
-  // fonction 
+  // fonction qui retourne les logements qui sont dans la ville "city"
   getCitiesByName(city : string): Observable<Array<City>> {
     return this.http.get<Array<City>>(`https://geo.api.gouv.fr/communes?nom=${city}`);
   }
 
+  // fonction qui appelle l'api gouvernementale, on spécifie la ville en paramètre et on récupère les coordonnées de la ville
   getCoordCity(city : string){
     return this.http.get(`https://api-adresse.data.gouv.fr/search/?q=${city}`).pipe(
     map((data: any) => {
@@ -42,6 +43,7 @@ export class GetAccommodationsService {
   );
   }
 
+  // met à jour un logement de la base de données. Cette fonction est utilisée pour mettre les likes dans la base de données
   setAccomodations(logement: Logement){
     return this.http.post('http://localhost:3000/post/accommodations', logement).pipe(
       catchError(error => {
@@ -50,6 +52,7 @@ export class GetAccommodationsService {
       }));
   }
 
+  // cette fonction permet d'avoir un logement en lui spécifiant un id. Cette fonction est utilisée quand on clique sur un logement ce qui lui permet de récupérer les infos dans la base de données à partir de l'url
   getCityById(id : number): Observable<Logement> {
     return this.http.get<Logement>(`http://localhost:3000/get/city?id=${id}`);
   }
