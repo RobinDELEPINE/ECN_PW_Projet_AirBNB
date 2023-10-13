@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { City } from '../models/City';
+import { map } from 'rxjs/operators';
 
 
 
@@ -21,6 +22,23 @@ export class GetAccommodationsService {
 
   getCitiesByName(city : string): Observable<Array<City>> {
     return this.http.get<Array<City>>(`https://geo.api.gouv.fr/communes?nom=${city}`);
+  }
+
+  getCoordCity(city : string){
+    return this.http.get(`https://api-adresse.data.gouv.fr/search/?q=${city}`).pipe(
+    map((data: any) => {
+      // Vérifiez que des résultats ont été renvoyés
+      if (data && data.features && data.features.length > 0) {
+        const firstResult = data.features[0];
+        // Vérifiez que les coordonnées existent dans la première entrée
+        if (firstResult.geometry && firstResult.geometry.coordinates) {
+          return firstResult.geometry.coordinates;
+        }
+      }
+      // Si les données sont absentes ou incorrectes, retournez null ou une autre valeur par défaut
+      return null;
+    })
+  );
   }
 
   setAccomodations(logement: Logement){
