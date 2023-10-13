@@ -6,16 +6,10 @@ import { City } from '../models/City';
   providedIn: 'root'
 })
 export class CityFilterService {
-  // private selectedCity : City;
 
-  // setSelectedCity(suggestion: City) {
-  //   this.selectedCity = suggestion;
-  // }
-
-  // getSelectedCity(){
-  //   return this.selectedCity;
-  // }
-
+  // classe qui stocke la ville rentrée dans les parametres de recherche
+  // nous l'avons mis en observable pour ensuite utiliser un subscribe pour que l'affichage se mette à jour tout seul quand la valeur du filtre change
+  
   private selectedCitySubject = new Subject<City>();
   selectedCity$ = this.selectedCitySubject.asObservable();
 
