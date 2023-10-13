@@ -12,27 +12,29 @@ import { map } from 'rxjs/operators';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
+// Cette classe est utilisée pour afficher la grille de logement
+
 export class HomeComponent implements OnInit{
 
-  mesLogements$: Observable<Array<Logement>>;
-  mesLogementsFiltered$: Observable<Array<Logement>>;
+  mesLogements$: Observable<Array<Logement>>; // liste de tous les logements
+  mesLogementsFiltered$: Observable<Array<Logement>>; // liste des logements filtrés
 
   cityFilter : City;
 
-  // constructor(private http : HttpClient){}
   constructor(private accomodationService: GetAccommodationsService, private filterService : CityFilterService){};
 
   ngOnInit() : void{
-    // this.mesLogements$ = this.http.get<Array<Logement>>('http://localhost:3000/get/accommodations'); 
-    this.mesLogements$ = this.accomodationService.getAccomodations();
-    this.mesLogementsFiltered$ = this.mesLogements$;
+    
+    this.mesLogements$ = this.accomodationService.getAccomodations(); // liste de tous les logements
+    this.mesLogementsFiltered$ = this.mesLogements$; // stockage de la liste de tous les logements
 
+    // on enlève les logements qui ne correspondent pas au filtre de la liste des logements
     this.filterService.selectedCity$.subscribe(
       (cityFilter)=>{
-        if(cityFilter.nom === ''){
-          this.mesLogementsFiltered$ = this.mesLogements$;
-        }else{
-          //filtrer mesLogements
+        if(cityFilter.nom === ''){ // si il n'y a pas de filtre
+          this.mesLogementsFiltered$ = this.mesLogements$; 
+        }else{ // sinon on filtre
           this.mesLogementsFiltered$ = this.mesLogements$.pipe(
             map(logements => logements.filter(logement => logement.city_name === cityFilter.nom))
           );
