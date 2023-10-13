@@ -12,14 +12,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class GetAccommodationsService {
-  private apiBaseUrl = 'http://localhost:3000/get/accommodations';
 
   constructor(private http : HttpClient){}
 
+  // fonction qui retourne l'ensemble des logements de la base de données sql
   getAccomodations(){
-    return this.http.get<Array<Logement>>(`${this.apiBaseUrl}`);
+    return this.http.get<Array<Logement>>(`http://localhost:3000/get/accommodations`);
   }
 
+  // fonction 
   getCitiesByName(city : string): Observable<Array<City>> {
     return this.http.get<Array<City>>(`https://geo.api.gouv.fr/communes?nom=${city}`);
   }
