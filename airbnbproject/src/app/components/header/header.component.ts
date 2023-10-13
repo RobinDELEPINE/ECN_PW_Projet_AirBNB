@@ -1,10 +1,10 @@
-
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/internal/Observable';
-import { City } from 'src/app/models/City';
-import { GetAccommodationsService } from 'src/app/services/get-accommodations.service';
-import { CityFilterService } from 'src/app/services/city-filter.service';
-import { Component, OnInit } from '@angular/core';
+// Importation des modules Angular nécessaires
+import { Router } from '@angular/router';  // Module pour la navigation entre les pages
+import { Observable } from 'rxjs/internal/Observable';  // Module pour la gestion des observables
+import { City } from 'src/app/models/City';  // Import du modèle City
+import { GetAccommodationsService } from 'src/app/services/get-accommodations.service';  // Service pour récupérer des hébergements
+import { CityFilterService } from 'src/app/services/city-filter.service';  // Service pour gérer la sélection de ville
+import { Component, OnInit } from '@angular/core';  // Composant Angular et module pour l'initialisation
 
 @Component({
   selector: 'app-header',
@@ -13,42 +13,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, private service: GetAccommodationsService, private serviceCityFilter : CityFilterService){}
+  constructor(private router: Router, private service: GetAccommodationsService, private serviceCityFilter: CityFilterService) {}
 
-  villes : Array<City>;
-
-  addressSuggestions: any[] = [];
-
-  suggestionNulle: City = {
+  // Déclaration des propriétés
+  villes: Array<City>;  // Liste des villes
+  addressSuggestions: any[] = [];  // Liste des suggestions d'adresses provenant de la recherche
+  suggestionNulle: City = {  // Objet représentant une suggestion vide
     nom: '',
     codesPostaux: []
   };
 
+  // État de l'affichage du popup et de la liste de suggestions
   isPopupVisible = false;
   affichageListe = false;
 
+  // Afficher le popup
   showPopup() {
     this.isPopupVisible = true;
   }
 
+  // Cacher le popup
   hidePopup() {
     this.isPopupVisible = false;
   }
   
-
-  goToMainPage(){
+  // Aller à la page principale
+  goToMainPage() {
     console.log("goToMainPage");
     this.router.navigateByUrl('');
   }
 
-  searchAdress(event : any){
+  // Recherche d'adresse en fonction de l'entrée utilisateur
+  searchAdress(event: any) {
     const query = event.target.value;
     this.affichageListe = false;
+
+    // Si la longueur de la requête est suffisante
     if (query.length > 2) {
       this.affichageListe = true;
+
+      // Appel du service pour récupérer les villes par nom
       this.service.getCitiesByName(query).subscribe(
         (tableau: any) => {
-          this.addressSuggestions = tableau.slice(0, 5); // Mettez à jour la liste des suggestions avec les résultats de l'API
+          this.addressSuggestions = tableau.slice(0, 5);  // Mettez à jour la liste des suggestions avec les résultats de l'API
           console.log(this.addressSuggestions);
         },
         (error) => {
@@ -56,25 +63,22 @@ export class HeaderComponent {
         }
       );
     } else {
-      this.addressSuggestions = []; // Videz la liste si la requête est trop courte
+      this.addressSuggestions = [];  // Videz la liste si la requête est trop courte
     }
   }
 
-  selectCity(suggestion : City){
-    this.addressSuggestions = []; // Videz la liste si la requête est trop courte
+  // Sélectionner une ville à partir des suggestions
+  selectCity(suggestion: City) {
+    this.addressSuggestions = [];  // Videz la liste de suggestions
     var monInput = document.getElementById("monInput") as HTMLInputElement;
-    monInput.value = suggestion.nom; //vide la string dans input
- 
+    monInput.value = suggestion.nom;  // Vide la chaîne dans l'input
 
-    // console.log("Tu as cliqué sur : "+suggestion.nom+","+suggestion.code);
-    // this.home.setFiltre(suggestion);
-
+    // Appel du service pour définir la ville sélectionnée
     this.serviceCityFilter.setSelectedCity(suggestion);
 
-    if(suggestion.nom === ''){
+    // Cacher le popup si la suggestion est vide
+    if (suggestion.nom === '') {
       this.isPopupVisible = false;
     }
-
   }
-
 }
