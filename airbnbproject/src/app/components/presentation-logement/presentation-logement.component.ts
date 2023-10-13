@@ -5,10 +5,11 @@ import { GetAccommodationsService } from 'src/app/services/get-accommodations.se
 import { Observable } from 'rxjs';
 import * as L from 'leaflet';
 
+
 const customIcon = L.icon({
-  iconUrl: '../../../assets/imgAirbnb/logoAirbnb.svg', // Remplacez par le chemin de votre image
-  iconSize: [10, 10], // Définissez la taille de l'icône
-  iconAnchor: [0, 0], // Définissez l'ancrage de l'icône
+  iconUrl: '../../../assets/imgAirbnb/position.svg', // Remplacez par le chemin de votre image
+  iconSize: [20, 20], // Définissez la taille de l'icône
+  iconAnchor: [10, 10], // Définissez l'ancrage de l'icône
 });
 
 @Component({
@@ -67,7 +68,7 @@ export class PresentationLogementComponent {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           }).addTo(this.map);
 
-          this.addMarkerToMap(this.map, this.cardData.city_name, coordinates);
+          this.addMarkerToMap(this.map, 'Il se situe ici', coordinates);
 
         } else {
           console.log('Aucune coordonnée trouvée ou données incorrectes.');
